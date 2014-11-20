@@ -1,0 +1,67 @@
+<html ng-app="blogApp">
+  <head>
+    <meta charset="utf-8">
+    <title>>@KielanLemons</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+    <script>
+    var blogApp = angular.module('blogApp', []);
+
+    blogApp.controller('PostViewCtrl', function ($scope){
+      $scope.titles = ['Prototypes', 'r modules even programming bra', 'niggers'];
+
+      $scope.addTitle = function() {
+        $scope.ttle.names.push($scope.enteredName);
+      } ;
+    });
+
+    blogApp.config(function ($routeProvider) {
+      $routeProvider
+      .when('/view1',
+          {
+            controller: 'PostViewCtrl',
+            templateURL: 'Partials/View1.html'
+          }
+      .when('/view', 
+          {
+            controller: 'PostViewCtrl',
+            templateURL:'Partials/View2.html'
+          })
+      .otherwise({redirectTo: '/view1'});
+      });
+    })
+    </script>
+  </head>
+  <body ng-controller="PostViewCtrl">
+      <table width="100%" style="height: 100%;" cellpadding="10" cellspacing="0" border="0">
+        <tr>
+          <!-- ============ HEADER SECTION ============== -->
+          <td colspan="2" style="height: 100px;" bgcolor="#777d6a">
+            <div id="header">
+              <div id="search">
+              <form name="myForm" ng-controller="FormController" class="my-form">
+              <input type="text" ng-model="searchTerm">
+              <input type="submit" value="add">
+              </form>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <!-- ============ MIDDLE CONTENT COLLUMN ============== -->
+          <td width="80%" valign="top" bgcolor="#EFEFEF">
+            <h3 ng-repeat="title in titles">{{title}}</h3>
+
+          </td>
+        </tr>
+      </table>
+      
+    <ul>
+  <li ng-repeat="title in titles">{{title}}</li>
+    </ul>
+    <form ng-submit="addName()">
+    <input type="text" ng-model="enderedName">
+    <input type="submit" value="add">
+    </form>
+  </body>
